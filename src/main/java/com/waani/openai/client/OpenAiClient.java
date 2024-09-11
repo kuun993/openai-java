@@ -1,4 +1,4 @@
-package com.waani.openai;
+package com.waani.openai.client;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -50,6 +50,9 @@ public class OpenAiClient {
 
     private final String user;
 
+    private final Boolean stream;
+
+
 
     // ~ OkHttpClient
     private final Integer connectTimeout;
@@ -69,7 +72,9 @@ public class OpenAiClient {
                         String user,
                         Integer connectTimeout,
                         Integer writeTimeout,
-                        Integer readTimeout) {
+                        Integer readTimeout,
+                        Boolean stream
+                        ) {
         this.baseUrl = baseUrl;
         this.apiKey = apiKey;
         this.model = model;
@@ -77,8 +82,17 @@ public class OpenAiClient {
         this.topP = topP;
         this.maxTokens = maxTokens;
         this.user = user;
+        if (connectTimeout == null) {
+            connectTimeout = 10;
+        }
         this.connectTimeout = connectTimeout;
+        if (writeTimeout == null) {
+            writeTimeout = 20;
+        }
         this.writeTimeout = writeTimeout;
+        if (readTimeout == null) {
+            readTimeout = 30;
+        }
         this.readTimeout = readTimeout;
         this.okHttpClient = okHttpClient();
         this.openAiApi = new Retrofit.Builder()
@@ -87,6 +101,7 @@ public class OpenAiClient {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(converterFactory())
                 .build().create(OpenAiApi.class);
+        this.stream = stream;
     }
 
     /**
@@ -159,5 +174,8 @@ public class OpenAiClient {
         chatCompletionRequest.setMessages(messages);
         return chatCompletions(chatCompletionRequest);
     }
+
+
+
 
 }
