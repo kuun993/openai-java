@@ -11,10 +11,11 @@ import java.util.List;
  * @author waani
  * @date 2024/9/2
  */
+@EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @NoArgsConstructor
-public class ChatCompletionResponse {
+public class ChatCompletionResponse extends ErrorInfo {
 
     /**
      * id

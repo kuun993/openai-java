@@ -75,6 +75,9 @@ public class OpenAiClient {
                         Integer readTimeout,
                         Boolean stream
                         ) {
+        if (baseUrl == null) {
+            baseUrl = "https://api.openai.com";
+        }                    
         this.baseUrl = baseUrl;
         this.apiKey = apiKey;
         this.model = model;

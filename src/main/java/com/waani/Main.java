@@ -12,7 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
         OpenAiClient openAiClient = OpenAiClient.builder()
-                .baseUrl("https://api.openai.com/v1/")
+                .baseUrl(System.getenv("OPENAI_BASE_URL"))
+                .apiKey(System.getenv("OPENAI_API_KEY"))
                 .model("gpt-4o-mini-2024-07-18")
                 .build();
 
