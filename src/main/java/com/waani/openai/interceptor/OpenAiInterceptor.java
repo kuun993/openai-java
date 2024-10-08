@@ -26,9 +26,9 @@ public class OpenAiInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         if (header != null) {
-            header.forEach((key, value) -> {
-                request.newBuilder().addHeader(key, value);
-            });
+            final Request.Builder builder = request.newBuilder();
+            header.forEach(builder::addHeader);
+            request = builder.build();
         }
         return chain.proceed(request);
     }
