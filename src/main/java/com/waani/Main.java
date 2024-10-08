@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         OpenAiClient openAiClient = OpenAiClient.builder()
-                .baseUrl("https://api.proxyxai.com/v1/")
+                .baseUrl("https://api.openai.com/v1/")
                 .model("gpt-4o-mini-2024-07-18")
                 .build();
 
