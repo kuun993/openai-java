@@ -1,6 +1,7 @@
 package com.waani;
 
 import com.waani.openai.client.OpenAiClient;
+import com.waani.common.Constants;
 import com.waani.openai.chat.response.ChatCompletionResponse;
 
 /**
@@ -12,8 +13,8 @@ public class Main {
 
     public static void main(String[] args) {
         OpenAiClient openAiClient = OpenAiClient.builder()
-                .baseUrl(System.getenv("OPENAI_BASE_URL"))
-                .apiKey(System.getenv("OPENAI_API_KEY"))
+                .baseUrl(Constants.OPENAI_BASE_URL)
+                .apiKey(Constants.OPENAI_API_KEY)
                 .model("gpt-4o-mini-2024-07-18")
                 .build();
 
