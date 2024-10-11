@@ -1,26 +1,22 @@
 package com.waani.openai.prompt;
 
 import com.waani.openai.message.Message;
-import com.waani.openai.message.UserMessage;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author waani
  * @date 2024/10/11
  */
-public class Prompt<T extends Message> {
+public class Prompt {
 
-    private final List<T> messages; 
+    private final List<Message> messages; 
 
-
-    public Prompt(String message) {
-        this(UserMessage.content(message));
-    }
-
-    public Prompt(T message) {
+    public Prompt(Message message) {
         this(Collections.singletonList(message));
     }
 
-    public Prompt(List<T> messages) {
+    public Prompt(List<Message> messages) {
         this.messages = messages;
     }
 
