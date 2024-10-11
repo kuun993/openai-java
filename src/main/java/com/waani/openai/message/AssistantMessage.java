@@ -2,7 +2,7 @@ package com.waani.openai.message;
 
 import com.waani.openai.tool.response.ToolCall;
 import lombok.Data;
-
+import lombok.EqualsAndHashCode;
 import java.util.List;
 import java.util.Locale;
 
@@ -10,6 +10,7 @@ import java.util.Locale;
  * @author waani
  * @date 2024/9/4
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class AssistantMessage extends Message {
 
