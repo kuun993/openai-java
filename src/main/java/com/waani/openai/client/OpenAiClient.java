@@ -7,6 +7,7 @@ import com.waani.openai.api.OpenAiApi;
 import com.waani.openai.chat.response.ChatCompletionResponse;
 import com.waani.openai.message.Message;
 import com.waani.openai.message.UserMessage;
+import com.waani.openai.prompt.Prompt;
 import com.waani.openai.interceptor.OpenAiInterceptor;
 import lombok.Builder;
 import okhttp3.OkHttpClient;
@@ -153,23 +154,17 @@ public class OpenAiClient {
 
     // ~ public
 
-
     public ChatCompletionResponse chat(String text) {
-        ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest();
-        chatCompletionRequest.setModel(this.model);
-        chatCompletionRequest.setMessages(Collections.singletonList(UserMessage.content(text)));
-        return chatCompletions(chatCompletionRequest);
+        return chat(UserMessage.content(text));
     }
-
-
 
     public ChatCompletionResponse chat(UserMessage userMessage) {
-        ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest();
-        chatCompletionRequest.setModel(this.model);
-        chatCompletionRequest.setMessages(Collections.singletonList(userMessage));
-        return chatCompletions(chatCompletionRequest);
+        return chat(Collections.singletonList(userMessage));
     }
 
+    public ChatCompletionResponse chat(Prompt prompt) {
+        return chat(prompt.getMessages());
+    }
 
     public ChatCompletionResponse chat(List<Message> messages) {
         ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest();
@@ -177,8 +172,5 @@ public class OpenAiClient {
         chatCompletionRequest.setMessages(messages);
         return chatCompletions(chatCompletionRequest);
     }
-
-
-
 
 }
