@@ -51,4 +51,12 @@ public class ChatCompletionResponse extends ErrorInfo {
         this.usage = usage;
     }
 
+
+    /**
+     * 机器人回复结果
+     */
+    public String getResult() {
+        return this.choices.get(0).getMessage().getContent();
+    }
+
 }

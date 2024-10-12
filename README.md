@@ -10,6 +10,6 @@
             .build();
 
     final ChatCompletionResponse openAiResponse = openAiClient.chat("你会做什么？");
-    System.out.println(openAiResponse.getMessage());
+    System.out.println(openAiResponse.getResult());
 
 ```
