@@ -9,10 +9,19 @@ import lombok.Data;
 @Data
 public class Function {
 
+    /**
+     * 工具名称
+     */
     private String name;
 
+    /**
+     * 工具描述
+     */
     private String description;
 
+    /**
+     * 工具参数
+     */
     private Parameters parameters;
 
 }
