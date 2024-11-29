@@ -34,11 +34,34 @@ public class Usage {
     private Integer totalTokens;
 
 
+    @JsonProperty("prompt_tokens_details")
+    private PromptTokensDetails promptTokensDetails;
+
+
     @Builder
-    public Usage(Integer promptTokens, Integer completionTokens, Integer totalTokens) {
+    public Usage(Integer promptTokens, Integer completionTokens, Integer totalTokens, PromptTokensDetails promptTokensDetails) {
         this.promptTokens = promptTokens;
         this.completionTokens = completionTokens;
         this.totalTokens = totalTokens;
+        this.promptTokensDetails = promptTokensDetails;
+    }
+
+
+    @Data
+    public static class PromptTokensDetails {
+
+        @JsonProperty("cached_tokens")
+        private Integer cachedTokens;
+
+        @JsonProperty("audio_tokens")
+        private Integer audioTokens;
+
+        @Builder
+        public PromptTokensDetails(Integer cachedTokens, Integer audioTokens) {
+            this.cachedTokens = cachedTokens;
+            this.audioTokens = audioTokens;
+        }
+
     }
 
 
