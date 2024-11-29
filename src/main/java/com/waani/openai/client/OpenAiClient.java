@@ -9,6 +9,7 @@ import com.waani.openai.message.Message;
 import com.waani.openai.message.UserMessage;
 import com.waani.openai.prompt.Prompt;
 import com.waani.openai.interceptor.OpenAiInterceptor;
+import com.waani.openai.tool.request.Tool;
 import lombok.Builder;
 import okhttp3.OkHttpClient;
 import com.waani.openai.exception.OpenAiException;
@@ -167,9 +168,14 @@ public class OpenAiClient {
     }
 
     public ChatCompletionResponse chat(List<Message> messages) {
+        return chat(messages, Collections.emptyList());
+    }
+
+    public ChatCompletionResponse chat(List<Message> messages, List<Tool> tools) {
         ChatCompletionRequest chatCompletionRequest = new ChatCompletionRequest();
         chatCompletionRequest.setModel(this.model);
         chatCompletionRequest.setMessages(messages);
+        chatCompletionRequest.setTools(tools);
         return chatCompletions(chatCompletionRequest);
     }
 
